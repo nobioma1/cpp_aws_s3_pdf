@@ -7,10 +7,14 @@ from ..exceptions import UnsupportedFileTypeException
 class PDF:
     allowed_content_type = ['application/pdf']
 
+    @classmethod
+    def is_pdf(cls, object_key, content_type):
+        return object_key.lower().endswith('.pdf') or content_type in cls.allowed_content_type
+
     @staticmethod
     def supported_file_type(data_list):
         for data in data_list:
-            if data["ContentType"] not in PDF.allowed_content_type:
+            if not PDF.is_pdf(data["ObjectKey"], data["ContentType"]):
                 raise UnsupportedFileTypeException(
                     f"File type not supported only: {str(PDF.allowed_content_type)} is allowed")
 

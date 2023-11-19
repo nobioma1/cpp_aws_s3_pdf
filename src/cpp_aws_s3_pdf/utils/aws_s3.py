@@ -38,6 +38,7 @@ class S3:
             read_body_stream = response["Body"].read()
 
             return {
+                "ObjectKey": object_key,
                 "ContentType": response["ContentType"],
                 "ReadBodyStram": read_body_stream
             }
