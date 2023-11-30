@@ -40,7 +40,7 @@ class S3:
             return {
                 "ObjectKey": object_key,
                 "ContentType": response["ContentType"],
-                "ReadBodyStram": read_body_stream
+                "ReadBodyStream": read_body_stream
             }
         except ClientError:
             raise FetchFileException()
