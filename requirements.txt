@@ -3,6 +3,7 @@ botocore==1.32.4
 build==1.0.3
 jmespath==1.0.1
 packaging==23.2
+Pillow==10.1.0
 pypdf==3.17.1
 pyproject_hooks==1.0.0
 python-dateutil==2.8.2

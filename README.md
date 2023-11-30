@@ -34,16 +34,22 @@ Here's a quick start on how to use `cpp_aws_s3_pdf`:
 - Import and Initialize:
 
 ```python
-from cpp_aws_s3_pdf.files import S3ToPDFCombine
+from cpp_aws_s3_pdf.s3_pdf import S3Pdf
 
-objects_combiner = S3ToPDFCombine(bucket_name='your-bucket-name')
+s3_pdf = S3Pdf(bucket_name='your-bucket-name')
 ```
 
 - Combine S3 Objects into PDF:
 
 ```python
 objects_to_combine = ['object_key1', 'object_key2', ...]
-download_url = objects_combiner.combine_objects(objects_to_combine, output_bucket_name='my_combine_bucket')
+download_url = s3_pdf.combine_objects(objects_to_combine, output_bucket_name='my_combine_bucket')
+
+# object is over-written with watermarked object in bucket
+s3_pdf.watermark_file(objects_to_combine[2], "This is a sample watermark.")
+
+# convert_object_to_pdf
+download_url = convert_image_to_pdf("object_image.jpg")
 ```
 
 ## Configuration
@@ -55,6 +61,7 @@ download_url = objects_combiner.combine_objects(objects_to_combine, output_bucke
 - AWS
 - boto3
 - PyPDF
+- Pillow
 
 ## For local development
 
