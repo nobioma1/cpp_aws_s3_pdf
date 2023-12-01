@@ -80,8 +80,9 @@ class S3Pdf:
 
             # upload watermarked file to s3
             self.s3_client.put_object(self.bucket_name, watermarked_file_pdf_bytes, object_key)
-        except Exception:
-            raise S3PDFException()
+        except Exception as e:
+            print(e)
+            raise S3PDFException(e)
 
     def combine_objects(self, objects_to_combine, output_bucket_name=None):
         """ Merges the files into one pdf and upload to output s3_bucket
