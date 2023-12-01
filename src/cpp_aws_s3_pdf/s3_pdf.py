@@ -1,5 +1,4 @@
 from datetime import datetime
-import io
 
 from .utils.aws_s3 import S3
 from .utils.pdf import PDF
@@ -47,8 +46,8 @@ class S3Pdf:
 
             # return download url for combined files
             return self.s3_client.generate_download_url(output_bucket_name, output_name)
-        except Exception:
-            raise S3PDFException()
+        except Exception as e:
+            raise S3PDFException(e)
 
     def apply_watermark_object(self, object_key, watermark_key=None, text=None):
         """Apply watermark on object
@@ -81,7 +80,6 @@ class S3Pdf:
             # upload watermarked file to s3
             self.s3_client.put_object(self.bucket_name, watermarked_file_pdf_bytes, object_key)
         except Exception as e:
-            print(e)
             raise S3PDFException(e)
 
     def combine_objects(self, objects_to_combine, output_bucket_name=None):
@@ -115,5 +113,5 @@ class S3Pdf:
 
             # return download url for combined files
             return self.s3_client.generate_download_url(output_bucket_name, output_name)
-        except Exception:
-            raise S3PDFException()
+        except Exception as e:
+            raise S3PDFException(e)
