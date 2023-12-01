@@ -41,13 +41,12 @@ class Image:
         return pdf_bytes
 
     @classmethod
-    def create_watermark(cls, text, size=(210, 297), font_size=16, opacity=128):
+    def create_watermark(cls, text, size=(210, 297), opacity=128):
         image_width, image_height = size
         watermark_image = PILImage.new('RGBA', size, (0, 0, 0, 0))
         draw = ImageDraw.Draw(watermark_image)
 
-        # set the font size
-        font = ImageFont.truetype("cpp_aws_s3_pdf/fonts/Lato-Regular.ttf", size=font_size)
+        font = ImageFont.load_default()
         left, top, right, bottom = font.getbbox(text)
         text_width, text_height = right - left, bottom - top
         position = ((image_width - text_width) / 2, (image_height - text_height) / 2)
