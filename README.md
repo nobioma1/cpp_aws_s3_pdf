@@ -19,7 +19,7 @@ for reports, archives, or data presentation.
 To install Your-Library-Name, simply use pip:
 
 ```bash
-pip install cpp_aws_s3_pdf
+pip install cpp-aws-s3-pdf
 ```
 
 ## Usage
